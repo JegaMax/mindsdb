@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Results - Company Knowledge Base{% endblock %}
+
+{% block content %}
+    <h1>Search Results</h1>
+    {% if results %}
+        <ul>
+            {% for result in results %}
+            <li>
+                <strong>Content:</strong> {{ result.content }}<br />
+                <strong>Department:</strong> {{ result.department }}<br />
+                <strong>Document Type:</strong> {{ result.doc_type }}
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Chat with AI - Company Knowledge Base{% endblock %}
+
+{% block content %}
+    <h1>Chat with AI Assistant</h1>
+    <div class="chat-box" id="chatBox">
+        {% for message in chat_history %}
+        <div class="message {{ message.sender }}">
+            <strong>{{ message.sender.title() }}:</strong> {{ message.text }}
+        </div>
+        {% endfor %}
+    </div>
+    <form method="POST" action="/chat">
+        <div class="form-group">
+            <label for="user_input">Your Question:</label>
+            <input type="text" id="user_input" name="user_input" placeholder="Ask a question about company knowledge..." required>
+        </div>
+        <button type="submit">Send</button>
+    </form>
+    <script>
+        // Auto-scroll to the bottom of the chat
+        var chatBox = document.getElementById('chatBox');
+        chatBox.scrollTop = chatBox.scrollHeight;
+    </script>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Summarize - Company Knowledge Base{% endblock %}
+
+{% block content %}
+    <h1>Summarize Document</h1>
+    <form method="POST" action="/summarize">
+        <label for="query">Document Content:</label>
+        <textarea id="query" name="query" rows="6" placeholder="Enter document content to summarize..." required></textarea>
+        <button type="submit">Summarize</button>
+    </form>
+    {% if summaries %}
+        <h2>Summary</h2>
+        {% for summary in summaries %}
+            <div class="summary">
+                <p><strong>Original:</strong> {{ summary.original }}</p>
+                <p><strong>Summary:</strong> {{ summary.summary }}</p>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

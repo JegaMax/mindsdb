@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Add Document - Company Knowledge Base{% endblock %}
+
+{% block content %}
+    <h1>Add New Document</h1>
+    <form method="POST" action="/add">
+        <div class="form-group">
+            <label for="content">Document Content:</label>
+            <textarea id="content" name="content" placeholder="Enter the content of the document" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="department">Department:</label>
+            <select id="department" name="department" required>
+                <option value="HR">HR</option>
+                <option value="Marketing">Marketing</option>
+                <option value="IT">IT</option>
+                <option value="Sales">Sales</option>
+                <option value="Finance">Finance</option>
+                <option value="Legal">Legal</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="doc_type">Document Type:</label>
+            <select id="doc_type" name="doc_type" required>
+                <option value="policy">Policy</option>
+                <option value="meeting">Meeting</option>
+                <option value="procedure">Procedure</option>
+                <option value="strategy">Strategy</option>
+                <option value="report">Report</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <button type="submit">Add Document</button>
+    </form>
+{% endblock %}

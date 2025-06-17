@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Browse - Company Knowledge Base{% endblock %}
+
+{% block content %}
+    <h1>Browse Documents</h1>
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <table>
+        <thead>
+            <tr>
+                <th>Content</th>
+                <th>Department</th>
+                <th>Document Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doc in results %}
+            <tr>
+                <td>{{ doc.content }}</td>
+                <td>{{ doc.department }}</td>
+                <td>{{ doc.doc_type }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
