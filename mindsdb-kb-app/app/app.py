@@ -23,8 +23,6 @@ except Exception as e:
     project = None
 
 
-# Create Knowledge Base (10 points)
-# Use Metadata Columns (10 pts)
 def create_knowledge_base():
     global kb
     openai_api_key = os.getenv("OPENAI_API_KEY", "")
