@@ -170,6 +170,28 @@ def setup_update_job():
     except Exception as e:
         print(f"Error setting up update job: {e}")
 
+def create_agent():
+    try:
+        openai_api_key = os.getenv("OPENAI_API_KEY", "")
+        if not openai_api_key:
+            print("Warning: OPENAI_API_KEY not set for agent creation.")
+        project.query(
+            f"""
+        CREATE AGENT IF NOT EXISTS company_agent
+        USING
+            model = {{
+                "provider": "openai",
+                "model_name": "gpt-3.5-turbo",
+                "api_key": "{openai_api_key}"
+            }},
+            knowledge_base = 'company_kb',
+            description = 'Agent for answering queries based on company knowledge base'
+        """
+        )
+        print("Agent 'company_agent' created successfully")
+    except Exception as e:
+        print(f"Error creating agent: {e}")
+
 
 def semantic_search(query, department=None):
     query = query.replace("'", "''")
@@ -330,6 +352,7 @@ if __name__ == "__main__":
         insert_sample_data()
         create_index()
         setup_update_job()
+        create_agent()
         app.run(host="0.0.0.0", port=5000, debug=True)
     else:
         print("Cannot start application: No connection to MindsDB")
